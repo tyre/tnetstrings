@@ -16,3 +16,9 @@
 
 (deftest array-parse
  (is ["a" "b" "c" "d" "e" "f"] (parse "11:a,b,c,d,e,f]")))
+
+(deftest booleans-true
+ (is true (parse "4:true!")))
+
+(deftest booleans-false
+ (is true (parse "5:false!")))
