@@ -15,21 +15,12 @@
         "!" (boolean msg)
         "~" nil
         "}" (parse-map msg)
-        "]" (list msg)  )
+        "]" (clojure.string/split msg #",")
+       )
   )
 )
 
-(parse "3:ABC'")  ; "ABC"
-(parse "3:123^")  ; 123.0
-(parse "3:123#")  ; 123
-(parse "11:derp:harold}")
-
-
-; experimental experiments
-
-(hash-map (str (hash-map :a 5)))
-(hash-map "a:5")
-
+; Dear Chris, Make this recursive. Love, Clojure
 (defn parse-map [string]
   (def hashy {})
   (doseq [key-vals (clojure.string/split string #",")]
@@ -40,4 +31,9 @@
   hashy
   )
 
-(parse-map "a:5,b:6")
+
+(parse "3:ABC'")        ; "ABC"
+(parse "3:123^")        ; 123.0
+(parse "3:123#")        ; 123
+(parse "11:derp:harold}")   ; {"derp" "harold"}
+(parse "11:a,b,c,d,e,f]")   ; ["a" "b" "c" "d" "e" "f"]
