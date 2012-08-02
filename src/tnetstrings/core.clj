@@ -1,3 +1,15 @@
+(ns tnetstrings.core)
+
+; Dear Chris, Make this recursive. Love, Clojure
+(defn parse-map [string]
+  (def hashy {})
+  (doseq [key-vals (clojure.string/split string #",")]
+    (let [key-val (clojure.string/split key-vals #":")]
+       (def hashy (assoc hashy (first key-val) (second key-val)))
+    )
+      )
+  hashy
+  )
 
 (defn parse [payload]
   (let [
@@ -19,17 +31,6 @@
        )
   )
 )
-
-; Dear Chris, Make this recursive. Love, Clojure
-(defn parse-map [string]
-  (def hashy {})
-  (doseq [key-vals (clojure.string/split string #",")]
-    (let [key-val (clojure.string/split key-vals #":")]
-       (def hashy (assoc hashy (first key-val) (second key-val)))
-    )
-      )
-  hashy
-  )
 
 
 (parse "3:ABC'")        ; "ABC"
