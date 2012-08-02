@@ -14,5 +14,10 @@
 (deftest hash-parse
  (is {"frat" "star" "derp" "harold"} (parse "21:derp:harold,frat:star}")))
 
+(deftest recursive-hash
+ (is false (parse "28:derp:harold,frat:{star:baby}}")))
+
+
 (deftest array-parse
  (is ["a" "b" "c" "d" "e" "f"] (parse "11:a,b,c,d,e,f]")))
+
