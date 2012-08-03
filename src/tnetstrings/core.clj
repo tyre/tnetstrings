@@ -4,12 +4,24 @@
 (defn parse-map [string]
  (def hashy {})
  (doseq [key-vals (clojure.string/split string #",")]
-  (let [key-val (clojure.string/split key-vals #":")]
-   (def hashy (assoc hashy (first key-val) (second key-val)))
+  (let [[cay value :as key-val] (clojure.string/split key-vals #":")]
+   (def hashy (assoc hashy cay value))
    )
   )
  hashy
  )
+
+; (defn parse-map [string]
+;  (let [
+;   key-vals (clojure.string/split string #",")
+;   [cay value :as key-val] (clojure.string/split key-vals #":")
+;   ]
+;   (when (= "{" (first value))
+;    ({} cay (parse-map value))
+;    {cay value}
+;    )
+;   )
+;  )
 
 (defn parse [payload]
  (let [

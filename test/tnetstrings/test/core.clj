@@ -3,22 +3,33 @@
  (:use [clojure.test]))
 
 (deftest int-parse
- (is 123 (parse "3:123#")))
+ (is
+  (= 123 (parse "3:123#"))))
 
 (deftest float-parse
- (is 123.0 (parse "3:123^")))
+ (is
+  (= 123.0 (parse "3:123^"))))
 
 (deftest string-parse
- (is "ABC" (parse "3:ABC'")))
+ (is
+  (= "ABC" (parse "3:ABC'"))))
 
 (deftest hash-parse
- (is {"frat" "star" "derp" "harold"} (parse "21:derp:harold,frat:star}")))
+ (is
+  (=
+   {"frat" "star" "derp" "harold"}
+   (parse "21:derp:harold,frat:star}"))))
 
 (deftest array-parse
- (is ["a" "b" "c" "d" "e" "f"] (parse "11:a,b,c,d,e,f]")))
+ (is
+  (=
+   ["a" "b" "c" "d" "e" "f"]
+   (parse "11:a,b,c,d,e,f]"))))
 
 (deftest booleans-true
- (is true (parse "4:true!")))
+ (is
+  (= true (parse "4:true!"))))
 
 (deftest booleans-false
- (is true (parse "5:false!")))
+ (is
+  (= false (parse "5:false!"))))
